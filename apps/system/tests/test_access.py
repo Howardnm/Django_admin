@@ -32,6 +32,7 @@ def test_permission_codes_come_from_enabled_roles():
 
 @pytest.mark.django_db
 def test_dept_and_child_scope_includes_descendants_only():
+    """ 测试数据范围为本部门及以下的角色只能看到其部门及其子部门的用户 """
     root = dept_create(name="总公司")
     east = dept_create(name="华东", parent=root)
     shanghai = dept_create(name="上海", parent=east)
@@ -49,6 +50,7 @@ def test_dept_and_child_scope_includes_descendants_only():
 
 @pytest.mark.django_db
 def test_custom_scope_uses_checked_depts():
+    """ 测试数据范围为自定义部门的角色只能看到其所选部门的用户 """
     root = dept_create(name="总公司")
     east = dept_create(name="华东", parent=root)
     north = dept_create(name="华北", parent=root)
@@ -65,6 +67,7 @@ def test_custom_scope_uses_checked_depts():
 
 @pytest.mark.django_db
 def test_multiple_roles_merge_scopes():
+    """ 测试用户拥有多个角色时，数据范围会合并 """
     root = dept_create(name="总公司")
     east = dept_create(name="华东", parent=root)
     user = make_user("alice", east)
