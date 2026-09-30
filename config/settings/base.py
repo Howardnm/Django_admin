@@ -22,7 +22,7 @@ INSTALLED_APPS = [
     "django_filters",
     "drf_spectacular",
     "apps.common",
-    "apps.system",
+    "apps.system.apps.SystemConfig",
     "apps.audit",
 ]
 
@@ -73,6 +73,8 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+AUTH_USER_MODEL = "system.User"
+
 
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
