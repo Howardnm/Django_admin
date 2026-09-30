@@ -1,0 +1,15 @@
+Metadata-Version: 2.4
+Name: django-admin-base
+Version: 0.1.0
+Summary: Single-organization Django API base
+Requires-Python: >=3.13
+Requires-Dist: django<6.1,>=6
+Requires-Dist: djangorestframework
+Requires-Dist: djangorestframework-simplejwt
+Requires-Dist: drf-spectacular>=0.30
+Requires-Dist: django-filter
+Requires-Dist: django-environ
+Provides-Extra: dev
+Requires-Dist: pytest; extra == "dev"
+Requires-Dist: pytest-django; extra == "dev"
+Requires-Dist: ruff; extra == "dev"

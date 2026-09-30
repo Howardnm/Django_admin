@@ -1,0 +1,31 @@
+[project]
+name = "django-admin-base"
+version = "0.1.0"
+description = "Single-organization Django API base"
+requires-python = ">=3.13"
+dependencies = [
+    "django>=6,<6.1",
+    "djangorestframework",
+    "djangorestframework-simplejwt",
+    "drf-spectacular>=0.30",
+    "django-filter",
+    "django-environ",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "pytest-django",
+    "ruff",
+]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["config*", "apps*"]
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "config.settings.test"
+pythonpath = ["."]

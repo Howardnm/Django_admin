@@ -1,0 +1,11 @@
+django<6.1,>=6
+djangorestframework
+djangorestframework-simplejwt
+drf-spectacular>=0.30
+django-filter
+django-environ
+
+[dev]
+pytest
+pytest-django
+ruff

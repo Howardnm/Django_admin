@@ -1,0 +1,12 @@
+README.md
+pyproject.toml
+apps/__init__.py
+apps/audit/__init__.py
+apps/common/__init__.py
+apps/system/__init__.py
+config/__init__.py
+django_admin_base.egg-info/PKG-INFO
+django_admin_base.egg-info/SOURCES.txt
+django_admin_base.egg-info/dependency_links.txt
+django_admin_base.egg-info/requires.txt
+django_admin_base.egg-info/top_level.txt
