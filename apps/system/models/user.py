@@ -14,6 +14,8 @@ class User(AbstractUser):
     phone = models.CharField("手机号", max_length=20, blank=True)
     status = models.CharField("状态",max_length=16,choices=UserStatus,default=UserStatus.ACTIVE)
     dept = models.ForeignKey("system.Dept",null=True,blank=True,on_delete=models.PROTECT,related_name="users",verbose_name="部门")
+    roles = models.ManyToManyField("system.Role",through="system.UserRole",related_name="users",blank=True) # through 指向已有的中间表，不会再建一张表，也不会多出一列。
+
 
 
     class Meta:
