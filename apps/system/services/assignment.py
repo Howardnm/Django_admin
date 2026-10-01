@@ -9,7 +9,7 @@ class PrivilegeEscalationError(Exception):
 
 
 def _check_actor_can_grant_role(*, actor: User, role: Role) -> None:
-    """ 检查正在执行这次分配的人（actor）是否可以授予指定角色 """
+    """ 检查操作人（actor）是否可以授予指定角色 """
     if actor.is_superuser:
         return
     actor_scopes = actor.roles.filter(is_enabled=True).values_list("data_scope", flat=True)
