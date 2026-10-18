@@ -10,6 +10,7 @@ from apps.system.selectors.access import permission_codes_for
 
 
 class LoginView(APIView):
+    """登录接口"""
     authentication_classes = []
     permission_classes = [AllowAny]
 
@@ -28,6 +29,7 @@ class LoginView(APIView):
 
 
 class RefreshView(APIView):
+    """刷新令牌接口"""
     authentication_classes = []
     permission_classes = [AllowAny]
 
@@ -40,6 +42,7 @@ class RefreshView(APIView):
 
 
 class LogoutView(APIView):
+    """登出接口"""
     def post(self, request):
         try:
             RefreshToken(request.data.get("refresh", "")).blacklist()
@@ -49,6 +52,7 @@ class LogoutView(APIView):
 
 
 class MeView(APIView):
+    """获取当前用户信息接口"""
     def get(self, request):
         request.user.permission_codes = sorted(permission_codes_for(user=request.user))
         return Response(MeSerializer(request.user).data)
