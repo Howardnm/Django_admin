@@ -70,3 +70,8 @@ class MenuSerializer(serializers.Serializer):
     permission_code = serializers.CharField(max_length=64, required=False, allow_blank=True, default="")
     route = serializers.CharField(max_length=128, required=False, allow_blank=True, default="")
     sort = serializers.IntegerField(required=False, min_value=0, default=0)
+
+
+class IdListSerializer(serializers.Serializer):
+    """ID 列表序列化器。"""
+    ids = serializers.ListField(child=serializers.IntegerField(min_value=1), allow_empty=True)
