@@ -1,6 +1,7 @@
 from rest_framework import serializers
 
 from apps.system.models import DataScope, MenuType, User, UserStatus
+from apps.system.selectors.menu import menus_for
 
 
 class LoginSerializer(serializers.Serializer):
@@ -12,10 +13,27 @@ class LoginSerializer(serializers.Serializer):
 class MeSerializer(serializers.ModelSerializer):
     """获取当前登录用户信息序列化器。"""
     permission_codes = serializers.ListField(child=serializers.CharField())
+    menus = serializers.SerializerMethodField()
 
     class Meta:
         model = User
-        fields = ["id", "username", "phone", "status", "dept", "permission_codes"]
+        fields = ["id", "username", "phone", "status", "dept", "permission_codes", "menus"]
+
+    def get_menus(self, user):
+        """获取当前登录用户可访问的菜单列表（不包含按钮类型的菜单）。"""
+        nodes = menus_for(user=user)
+        return [
+            {
+                "id": menu.id,
+                "parent_id": menu.parent_id,
+                "name": menu.name,
+                "type": menu.type,
+                "route": menu.route,
+                "sort": menu.sort,
+            }
+            for menu in nodes
+        ]
+
 
 
 class DeptSerializer(serializers.Serializer):
