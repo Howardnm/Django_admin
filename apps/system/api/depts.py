@@ -15,6 +15,7 @@ from apps.system.models import Dept
 
 
 def error(code, message, status) -> Response:
+    """返回错误响应"""
     return Response({"code": code, "message": message, "errors": {}}, status=status)
 
 
@@ -73,6 +74,11 @@ class DeptCollectionView(APIView):
 
 
 class DeptDetailView(APIView):
+    """
+    部门详情视图。
+    PUT: 更新部门
+    DELETE: 删除部门
+    """
     permission_code = {
         "put": "system:dept:update",
         "delete": "system:dept:delete",

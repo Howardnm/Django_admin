@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from apps.system.models import User, UserStatus
+from apps.system.models import DataScope, User, UserStatus
 
 
 class LoginSerializer(serializers.Serializer):
@@ -50,3 +50,12 @@ class UserOutSerializer(serializers.Serializer):
     phone = serializers.CharField()
     status = serializers.CharField()
     dept_id = serializers.IntegerField(allow_null=True)
+
+
+class RoleSerializer(serializers.Serializer):
+    """角色序列化器。"""
+    id = serializers.IntegerField(read_only=True)
+    name = serializers.CharField(max_length=64)
+    data_scope = serializers.ChoiceField(choices=DataScope.choices, required=False, default=DataScope.SELF)
+    sort = serializers.IntegerField(required=False, min_value=0, default=0)
+    is_enabled = serializers.BooleanField(required=False, default=True)

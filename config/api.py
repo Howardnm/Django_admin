@@ -2,6 +2,7 @@ from django.urls import path
 
 from apps.system.api.auth import LoginView, LogoutView, MeView, RefreshView
 from apps.system.api.depts import DeptCollectionView, DeptDetailView
+from apps.system.api.roles import RoleCollectionView, RoleDetailView
 from apps.system.api.users import UserCollectionView, UserDetailView
 
 urlpatterns = [
@@ -13,4 +14,6 @@ urlpatterns = [
     path("system/depts/<int:dept_id>", DeptDetailView.as_view()),
     path("system/users", UserCollectionView.as_view()),
     path("system/users/<int:user_id>", UserDetailView.as_view()),
+    path("system/roles", RoleCollectionView.as_view()),
+    path("system/roles/<int:role_id>", RoleDetailView.as_view()),
 ]
