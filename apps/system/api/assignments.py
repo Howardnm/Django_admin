@@ -18,7 +18,7 @@ def error(code, message, status):
 
 
 def unique_ids(ids):
-    """返回唯一的 ID 列表，保持原有顺序。"""
+    """返回唯一的 ID 列表，保持原有顺序。即去除重复的 ID。"""
     return list(dict.fromkeys(ids))
 
 
