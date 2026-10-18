@@ -2,7 +2,7 @@ from .dept import Dept
 from .menu import Menu, MenuType
 from .relations import RoleDept, RoleMenu, UserRole
 from .role import DataScope, Role
-from .user import User
+from .user import User, UserStatus
 
 __all__ = [
     "DataScope",
@@ -13,5 +13,6 @@ __all__ = [
     "RoleDept",
     "RoleMenu",
     "User",
+    "UserStatus",
     "UserRole",
 ]
