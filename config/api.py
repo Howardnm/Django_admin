@@ -2,6 +2,7 @@ from django.urls import path
 
 from apps.system.api.auth import LoginView, LogoutView, MeView, RefreshView
 from apps.system.api.depts import DeptCollectionView, DeptDetailView
+from apps.system.api.users import UserCollectionView, UserDetailView
 
 urlpatterns = [
     path("auth/login", LoginView.as_view()),
@@ -10,4 +11,6 @@ urlpatterns = [
     path("auth/me", MeView.as_view()),
     path("system/depts", DeptCollectionView.as_view()),
     path("system/depts/<int:dept_id>", DeptDetailView.as_view()),
+    path("system/users", UserCollectionView.as_view()),
+    path("system/users/<int:user_id>", UserDetailView.as_view()),
 ]

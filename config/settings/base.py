@@ -86,7 +86,7 @@ REST_FRAMEWORK = {
         "apps.system.permissions.HasPermissionCode",
     ),
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
-    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
+    "DEFAULT_PAGINATION_CLASS": "apps.common.pagination.DefaultPagination",
     "PAGE_SIZE": 20,
 }
 

@@ -39,7 +39,10 @@ def _scope_rank(scope: str) -> int:
 
 
 def scope_depts_for(*, user: User) -> QuerySet[Dept] | None:
-    """None 表示不限制部门。空 QuerySet 表示看不到任何部门。"""
+    """
+    获取用户可访问的部门列表，超级用户返回 None，表示不限制部门，普通用户返回其角色所拥有的数据范围内的部门列表。
+    None 表示不限制部门。空 QuerySet 表示看不到任何部门。
+    """
     if user.is_superuser:
         return None
     roles = list(Role.objects.filter(user_roles__user=user, is_enabled=True).distinct())
