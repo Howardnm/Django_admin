@@ -3,16 +3,23 @@ from rest_framework.permissions import BasePermission
 from apps.system.selectors.access import permission_codes_for, scope_depts_for
 
 
+def code_for(declared, request) -> str | None:
+    """获取当前请求方法对应的权限码。"""
+    if isinstance(declared, str):
+        return declared
+    return declared.get(request.method.lower())
+
+
 class HasPermissionCode(BasePermission):
-    """
-    检查用户是否拥有指定的权限码。
-    如果视图没有指定 permission_code 属性，则默认允许访问。
-    如果用户是超级用户，则默认允许访问。
-    """
-    def has_permission(self, request, view):
-        code = getattr(view, "permission_code", None)
-        if code is None:
+    """视图没声明权限码时放行。声明了字典但当前方法没有对应码时拒绝。"""
+    
+    def has_permission(self, request, view) -> bool:
+        declared = getattr(view, "permission_code", None)
+        if declared is None:
             return True
+        code = code_for(declared, request)
+        if code is None:
+            return False
         user = request.user
         if not user.is_authenticated:
             return False
